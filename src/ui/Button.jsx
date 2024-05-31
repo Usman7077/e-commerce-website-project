@@ -1,11 +1,16 @@
-function Button({ children, onClick, type = "primary" }) {
-  console.log(typeof type);
+function Button({ children, onClick, type = "primary", bgColor = "#1c7ed6" }) {
+  const str = bgColor.toString();
+  console.log(str);
+  console.log(typeof str);
   return (
-    <div className="inline-block">
+    <>
       {type === "primary" && (
         <button
           onClick={onClick}
-          className="bg-[#1c7ed6] text-stone-50 px-4 py-[2px] rounded-md font-semibold tracking-wider hover:bg-[#1864ab]"
+          className={
+            " text-stone-50 px-4 py-[2px] rounded-sm font-semibold tracking-wider hover:bg-[#1864ab] " +
+            ` bg-[${str}]`
+          }
         >
           {children}
         </button>
@@ -13,12 +18,12 @@ function Button({ children, onClick, type = "primary" }) {
       {type === "small" && (
         <button
           onClick={onClick}
-          className="bg-[#1c7ed6] text-stone-50 px-4 py-[2px] rounded-full font-semibold tracking-wider hover:bg-[#1864ab]"
+          className="bg-[#1c7ed6] text-stone-50 px-[7px] text-1xl py-[1px] rounded-sm font-bold hover:bg-[#1864ab]"
         >
           {children}
         </button>
       )}
-    </div>
+    </>
   );
 }
 

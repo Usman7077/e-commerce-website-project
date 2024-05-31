@@ -23,33 +23,13 @@ const Cards = ({ pr, customerReviewAverage }) => {
   }
   return (
     <>
-      <div className="max-w-96 max-h-96 m-7">
+      <div className="flex flex-col justify-between gap-2 max-w-[17rem] max-h-[400px] p-4 relative ">
         <Link to={`/product/${pr.sku}`}>
-          {" "}
-          <img src={pr.image} className="object-scale-down h-48 w-96"></img>
+          <img src={pr.image} className="object-scale-down h-48 w-96" />
         </Link>
-        <p className="text-sm text-[#1e6ed7] hover:underline hover:text-[#1ed75c] cursor-pointer">
-          {" "}
+        <p className="text-sm text-[#1e6ed7] hover:underline hover:text-[#1ed75c] cursor-pointer mt-4 ">
           {pr.name}
         </p>
-        <div className="flex">
-          <p className="mr-7 ">
-            <b>Model: </b>
-            {pr.modelNumber}{" "}
-          </p>
-          <p>
-            <b> SKU: </b>
-            {pr.sku}
-          </p>
-        </div>
-        <p className="inline-block">
-          <b>${pr.regularPrice}</b>
-        </p>
-        {pr.onSale && (
-          <div className="bg-[#e04b58] text-white  w-12 text-center inline-block">
-            Sale
-          </div>
-        )}
         {customerReviewAverage && (
           <StarRating
             defaultRating={customerReviewAverage}
@@ -57,12 +37,27 @@ const Cards = ({ pr, customerReviewAverage }) => {
             customerCount={pr.customerReviewCount}
           />
         )}
-        {isInCart?.length !== 0 ? (
-          <p>Go to Cart</p>
-        ) : (
-          <Button onClick={handleCart} type={"primary"}>
-            Add to Cart
-          </Button>
+
+        <div className="flex justify-between">
+          <div className="text-2xl font-base inline-block">
+            <span className="text-sm">$</span>
+            {pr.regularPrice}
+          </div>
+          <div className=" inline-block">
+            {isInCart?.length !== 0 ? (
+              <Button bgColor="#8a1542">Go to Cart</Button>
+            ) : (
+              <Button onClick={handleCart} type={"primary"}>
+                Add to Cart
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {pr.onSale && (
+          <div className="bg-[#e03131] text-white  w-12 text-center inline-block absolute tracking-wider font-semibold left-8 ">
+            Sale
+          </div>
         )}
       </div>
     </>

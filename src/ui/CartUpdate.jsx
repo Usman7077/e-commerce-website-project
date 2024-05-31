@@ -5,17 +5,21 @@ import Button from "./Button";
 function CartUpdate({ children }) {
   const { cart, setCart } = useContext(CartContext);
 
-  return <div>{children}</div>;
+  return (
+    <div className="inline-block">
+      <div className="space-x-4 flex items-center">{children}</div>
+    </div>
+  );
 }
 
 function Increase({ sku }) {
   const { cart, setCart } = useContext(CartContext);
   function handleIncrease() {
-    const arr = cart.map((arr) =>
-      arr.sku === sku ? { ...arr, count: arr.count + 1 } : arr
+    const updatedCart = cart.map((item) =>
+      item.sku === sku ? { ...item, count: item.count + 1 } : item
     );
     // arr[0].count -= 1;
-    setCart(arr);
+    setCart(updatedCart);
   }
   return (
     <Button type="small" onClick={handleIncrease}>
@@ -27,11 +31,14 @@ function Increase({ sku }) {
 function Decrease({ sku }) {
   const { cart, setCart } = useContext(CartContext);
   function handleDecrease() {
-    const arr = cart.map((arr) =>
-      arr.sku === sku ? { ...arr, count: arr.count - 1 } : arr
+    const updatedCart = cart.map((item) =>
+      item.sku === sku ? { ...item, count: item.count - 1 } : item
+    );
+    const filterCart = updatedCart.filter((item) =>
+      item.sku !== sku ? true : item.count !== 0 ? true : false
     );
     // arr[0].count -= 1;
-    setCart(arr);
+    setCart(filterCart);
   }
   return (
     <Button type="small" onClick={handleDecrease}>
@@ -41,7 +48,7 @@ function Decrease({ sku }) {
 }
 
 function Quantity({ count }) {
-  return <span>{count}</span>;
+  return <span className="text-xl font-medium">{count}</span>;
 }
 
 function Label({ children }) {

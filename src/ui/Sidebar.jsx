@@ -17,7 +17,7 @@ const Sidebar = () => {
             onClick={() => handleProductCat(0)}
             className={
               "p-2 cursor-pointer hover:bg-[#8b9c927e] rounded-2xl " +
-              (productCategory === 0 ? "text-[#3cd355]" : "")
+              (productCategory === 0 ? "text-[#1971c2]" : "")
             }
           >
             Desktop & All-in-One Computers

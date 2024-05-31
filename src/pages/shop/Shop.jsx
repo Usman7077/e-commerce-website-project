@@ -15,10 +15,10 @@ const Content = () => {
 
   return (
     <>
-      <div className="flex relative z-10">
+      <div className="flex relative z-10 max-w-[1300px] mx-auto">
         <Sidebar />
         <div>
-          <div className="flex flex-wrap min-w-[80%] border-l-[1px] shadow-lg">
+          <div className="flex flex-wrap border-l-[1px]  gap-x-20 gap-y-20 p-4">
             {isLoading ? (
               <Shimmer />
             ) : (
